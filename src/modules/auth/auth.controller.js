@@ -30,7 +30,13 @@ module.exports.signIn = catchAsyncError(async (req, res, next) => {
       },
       "MgProject"
     );
-    return res.json({ message: "sucess", token });
+    return res.json({
+      message: "sucess",
+      name: isFound.name,
+      email: isFound.email,
+      role: isFound.role,
+      token,
+    });
   }
   next(new AppError("incorrect email or password", 401));
 });
